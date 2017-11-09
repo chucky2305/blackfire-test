@@ -1,0 +1,23 @@
+version: "2"
+services:
+  php:
+    build: phpfpm/
+    ports:
+      - "8080:80"
+    volumes:
+      - ./code:/code
+    environment:
+       - BLACKFIRE_CLIENT_ID=087a1334-c5e3-4567-83c6-8911cfa9bc52
+       - BLACKFIRE_CLIENT_TOKEN=c6949f552f739f6c15af330628037d7d6649ca0da08c35c9a0fbc7d83d2875e0
+       - BLACKFIRE_SERVER_ID=dc0917b3-ec3f-4b5f-b5c5-387a4aac093a
+       - BLACKFIRE_SERVER_TOKEN=7270feb3a3f9fd80e4259dcb5d2670685c2bb858957f759a6008e1a6372f11d2 
+       - BLACKFIRE_LOG_LEVEL=4
+
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+        # Exposes the host BLACKFIRE_SERVER_ID and TOKEN environment variables.
+        - BLACKFIRE_CLIENT_ID
+        - BLACKFIRE_CLIENT_TOKEN
+        - BLACKFIRE_SERVER_ID
+        - BLACKFIRE_SERVER_TOKEN
